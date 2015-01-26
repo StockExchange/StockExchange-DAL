@@ -1,0 +1,6 @@
+public SqlConnection getConnection()
+        {
+            SqlConnection con = new SqlConnection("Data Source=JOHANNES-PC;Database=StockExchange;Integrated Security=true");
+            con.Open();
+            return con;
+        }
