@@ -1,22 +1,41 @@
-public SqlConnection GetConnection()
-        {
-            SqlConnection con = new SqlConnection("Data Source=JOHANNES-PC;Database=StockExchange;Integrated Security=true");
-            con.Open();
-            return con;
-        }
-
-
-        public SqlDataReader GetCommand(String sqlCommand)
-        {
-            SqlConnection con = getConnection();
-            SqlCommand cmd = new SqlCommand(sqlCommand, con);
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            return reader;
-
-        }
+StockExchangeEntities SEE = new StockExchangeEntities();
         
-        public SqlDataReader GetUser(String UserID){
-         String query =  "Select * from Users where UserID = '" + UserID + "'";
-         return getCommand(query);
+        public void SetAdmin(String AdminId, String PWord, String Name){
+            Administrator Admin = new Administrator();
+            Admin.AdminId = "Pettan";
+            Admin.Name = "Petter";
+            Admin.PWord = "Hej";
+
+            SEE.Administrator.Add(Admin);
+            SEE.SaveChanges();
+
+            }
+
+
+        public void SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr){
+            Stock Stock = new Stock();
+            
+            Stock.SName = SName;
+            Stock.SInfo = SInfo;
+            Stock.CurrentValue = CurrentValue;
+            Stock.OrgNr = OrgNr;
+
+            SEE.Stock.Add(Stock);
+            SEE.SaveChanges();
+            }
+            
+        public void SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
+        {
+            Stockportfolio StockPort = new Stockportfolio();
+
+            StockPort.UserId = UserId;
+            StockPort.SName = SName;
+            StockPort.Value = Value;
+            StockPort.Amount = Amount;
+
+            SEE.Stockportfolio.Add(StockPort);
+            SEE.SaveChanges();
+
+
+        }
     }
