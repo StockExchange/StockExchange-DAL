@@ -4,3 +4,21 @@ public SqlConnection getConnection()
             con.Open();
             return con;
         }
+        
+        public SqlDataReader getStudentsOnCourse(String course)
+        {
+            String sqlString = "select * "
+            + "from student "
+            + "INNER JOIN studies " 
+            + "ON student.spnr=studies.spnr "
+            + "where ccode = '"+course+"'";
+
+            SqlConnection con = getConnection();
+
+            SqlCommand cmd = new SqlCommand(sqlString, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            return reader;
+        }
+        
+        
