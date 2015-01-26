@@ -1,4 +1,4 @@
-public SqlConnection getConnection()
+public SqlConnection GetConnection()
         {
             SqlConnection con = new SqlConnection("Data Source=JOHANNES-PC;Database=StockExchange;Integrated Security=true");
             con.Open();
@@ -6,7 +6,7 @@ public SqlConnection getConnection()
         }
 
 
-        public SqlDataReader getCommand(String sqlCommand)
+        public SqlDataReader GetCommand(String sqlCommand)
         {
             SqlConnection con = getConnection();
             SqlCommand cmd = new SqlCommand(sqlCommand, con);
