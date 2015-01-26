@@ -15,3 +15,8 @@ public SqlConnection GetConnection()
             return reader;
 
         }
+        
+        public SqlDataReader GetUser(String UserID){
+         String query =  "Select * from Users where UserID = '" + UserID + "'";
+         return getCommand(query);
+    }
