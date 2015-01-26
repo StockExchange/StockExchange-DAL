@@ -38,4 +38,36 @@ StockExchangeEntities SEE = new StockExchangeEntities();
 
 
         }
+         public void SetStockValue(String SName, String Date, Double Value, String OrgNr)
+        {
+            Stockvalue StockVal = new Stockvalue();
+
+            StockVal.SName = SName;
+            StockVal.Date = Date;
+            StockVal.Value = Value;
+            StockVal.OrgNr = OrgNr;
+
+            SEE.Stockvalue.Add(StockVal);
+            SEE.SaveChanges();
+
+
+        }
+         public void SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
+        {
+            Users User = new Users();
+
+            User.UserId = UserId;
+            User.PWord = PWord;
+            User.FNname = FName;
+            User.LName = LName;
+            User.Adress = Adress;
+            User.NINr = NINr;
+            User.Account = Account;
+
+
+            SEE.Users.Add(User);
+            SEE.SaveChanges();
+
+
+        }
     }
