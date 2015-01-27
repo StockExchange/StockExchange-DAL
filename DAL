@@ -67,6 +67,41 @@ StockExchangeEntities SEE = new StockExchangeEntities();
 
             SEE.Users.Add(User);
             SEE.SaveChanges();
+            
+              public Users getUser(String UserId)
+         {
+             Users Users = SEE.Users.Find(UserId);
+             return Users;
+
+         }
+    public Stockvalue getStockValue (String SName, String Date)
+         {
+             Stockvalue Stockvalue = SEE.Stockvalue.Find(SName, Date);
+                return Stockvalue;
+
+         }
+    public Stockportfolio getStockPortfolio(String SName, String UserId)
+    {
+        Stockportfolio Stockportfolio = SEE.Stockportfolio.Find(SName, UserId);
+        return Stockportfolio;
+
+    }
+    public Stock getStock(String SName)
+    {
+        Stock Stock = SEE.Stock.Find(SName);
+        return Stock;
+
+    }
+    public Administrator getAdmin(String AdminId)
+    {
+        Administrator Administrator = SEE.Administrator.Find(AdminId);
+        return Administrator;
+
+    }
+    }
+    }
+
+
 
 
         }
