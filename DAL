@@ -67,13 +67,25 @@ StockExchangeEntities SEE = new StockExchangeEntities();
 
             SEE.Users.Add(User);
             SEE.SaveChanges();
-            
-              public Users getUser(String UserId)
-         {
-             Users Users = SEE.Users.Find(UserId);
-             return Users;
+        }
+        public Users GetUser(String UserId, String PassWord)
+        {
 
-         }
+            try
+            {
+                Users user = SEE.Users.Find(UserId);
+                if (user.pWord == PassWord)
+                {
+                    return user;
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+            return null;
+        }
     public Stockvalue GetStockValue (String SName, String Date)
          {
              Stockvalue Stockvalue = SEE.Stockvalue.Find(SName, Date);
@@ -92,12 +104,25 @@ StockExchangeEntities SEE = new StockExchangeEntities();
         return Stock;
 
     }
-    public Administrator GetAdmin(String AdminId)
-    {
-        Administrator Administrator = SEE.Administrator.Find(AdminId);
-        return Administrator;
+   public Administrator GetAdmin(String UserId, String PassWord)
+        {
 
-    }
+            try
+            {
+                Administrator admin = SEE.Administrator.Find(UserId);
+                if (admin.pWord == PassWord)
+                {
+                    return admin;
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+            return null;
+            
+        }
     }
     }
     }
