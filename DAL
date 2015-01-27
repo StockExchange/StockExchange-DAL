@@ -1,10 +1,10 @@
 StockExchangeEntities SEE = new StockExchangeEntities();
         
-        public void SetAdmin(String AdminId, String PWord, String Name){
+       public void SetAdmin(String AdminId, String PWord, String Name){
             Administrator Admin = new Administrator();
-            Admin.AdminId = "Pettan";
-            Admin.Name = "Petter";
-            Admin.PWord = "Hej";
+            Admin.adminId = AdminId;
+            Admin.name = PWord;
+            Admin.pWord = Name;
 
             SEE.Administrator.Add(Admin);
             SEE.SaveChanges();
