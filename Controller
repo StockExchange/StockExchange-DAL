@@ -10,69 +10,65 @@ namespace StockExchange
     {
         LogicalDataLayer LDL = new LogicalDataLayer();
         DAL DAL = new DAL();
-        
-        public String LoginCheck(String UserId, String PassWord)
-        {
-                return LDL.LoginCheck(UserId, PassWord, DAL);
-        }
         public String ErrorMessage()
         {
             return DAL.ErrorMessage();
         }
+        public String LoginCheck(String UserId, String PassWord)
+        {
+            return LDL.LoginCheck(UserId, PassWord, DAL);
+        }
 
-    
 
-
-
-public Users GetUser(String UserId)
+        public Users GetUser(String UserId)
         {
             Users User = DAL.GetUser(UserId);
             return User;
 
         }
-        public void SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
+        public String SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
         {
-            DAL.SetUsers(UserId, PWord, FName, LName, Adress, NINr, Account);
+            return DAL.SetUsers(UserId, PWord, FName, LName, Adress, NINr, Account);
         }
-        
-         public Administrator GetAdmin(String AdminId)
+
+        public Administrator GetAdmin(String AdminId)
         {
             return DAL.GetAdmin(AdminId);
         }
-        public void SetAdministrators(String AdminId, String PWord, String Name)
+        public String SetAdmin(String AdminId, String PWord, String Name)
         {
-            DAL.SetAdministrators(AdminId, PWord, Name);
-            }
+            return DAL.SetAdmin(AdminId, PWord, Name);
+        }
         public Stockvalue GetStockValue(String SName, String Date)
         {
             return DAL.GetStockValue(SName, Date);
-            }
-        public void SetStockValue(String SName, String Date, Double Value, String OrgNr)
+        }
+        public String SetStockValue(String SName, String Date, Double Value, String OrgNr)
         {
-            DAL.SetStockValue(SName, Date, Value, OrgNr);
-            }
-          public Stock GetStock(String SName)
+            return DAL.SetStockValue(SName, Date, Value, OrgNr);
+        }
+        public Stock GetStock(String SName)
         {
             return DAL.GetStock(SName);
         }
-        public void SetStock (String SName, String SInfo, Double CurrentValue, String OrgNr)
+        public String SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
         {
-           DAL.SetStock(SName, SInfo, CurrentValue, OrgNr);
-           }
-        
+            return DAL.SetStock(SName, SInfo, CurrentValue, OrgNr);
+        }
+
         public Stockportfolio GetStockPortfolio(String UserId, String SName)
-        { 
-            return DAL.GetStockPortfolio (UserId, SName);
-            }
-        public void SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
         {
-            DAL.SetStockPortfolio(UserId, SName, Value, Amount);
-            }
-        
+            return DAL.GetStockPortfolio(UserId, SName);
+        }
+        public String SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
+        {
+            return DAL.SetStockPortfolio(UserId, SName, Value, Amount);
+        }
+
         public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
-        { 
+        {
             return DAL.GetAdminPassWordCheck(UserId, PassWord);
-            }
+        }
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
