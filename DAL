@@ -1,15 +1,29 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StockExchange
 {
+   
     class DAL
     {
         StockExchangeEntities SEE = new StockExchangeEntities();
+        private Exception Exception;
 
+
+
+        public String ErrorMessage()
+        {
+            if (Exception.Message == "Object reference not set to an instance of an object.")
+            {
+                return "Incorrect password or username";
+            }
+            return null;
+
+        }
         public void SetAdmin(String AdminId, String PWord, String Name)
         {
             Administrator Admin = new Administrator();
@@ -56,9 +70,10 @@ namespace StockExchange
                     return admin;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
+                Exception = e;
                 return null;
             }
             return null;
@@ -185,7 +200,7 @@ namespace StockExchange
             User.pWord = PWord;
             User.fName = FName;
             User.lName = LName;
-            User.adress = Adress;
+            User.address = Adress;
             User.niNr = NINr;
             User.account = Account;
 
@@ -244,7 +259,7 @@ namespace StockExchange
 
             tmpUser.fName = FName;
             tmpUser.lName = LName;
-            tmpUser.adress = Adress;
+            tmpUser.address = Adress;
             tmpUser.niNr = NINr;
 
 
@@ -265,10 +280,3 @@ namespace StockExchange
 
     }
 }
-
-
-
-
-
-
-    }
