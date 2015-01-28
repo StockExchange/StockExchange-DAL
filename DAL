@@ -21,6 +21,11 @@ namespace StockExchange
             {
                 return "Incorrect password or username";
             }
+            if (Exception.Message == "An error occurred while updating the entries. See the inner exception for details.")
+            {
+                return "Already exists";
+            }
+
             return Exception.Message;
 
         }
@@ -40,14 +45,14 @@ namespace StockExchange
 
             }
             catch (Exception e)
-            { 
-            Exception = e;
-            return "fail";
+            {
+                Exception = e;
+                return "fail";
             }
 
 
 
-            
+
 
         }
         public Administrator GetAdmin(String AdminId)
