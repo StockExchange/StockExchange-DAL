@@ -45,7 +45,8 @@ public Users GetUser(String UserId)
         
         public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
         { 
-            return DAL.GetAdminPassWordCheck(UserId, PassWord)
+            return DAL.GetAdminPassWordCheck(UserId, PassWord);
+            }
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
