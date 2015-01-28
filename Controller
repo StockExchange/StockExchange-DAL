@@ -1,7 +1,6 @@
 public Users GetUser(String UserId)
         {
             Users User = DAL.GetUser(UserId);
-
             return User;
 
         }
@@ -9,13 +8,49 @@ public Users GetUser(String UserId)
         {
             DAL.SetUsers(UserId, PWord, FName, LName, Adress, NINr, Account);
         }
+        
+         public Administrator GetAdmin(String AdminId)
+        {
+            return DAL.GetAdmin(AdminId);
+        }
+        public void SetAdministrators(String AdminId, String PWord, String Name)
+        {
+            DAL.SetAdministrators(AdminId, PWord, Name);
+            }
+        public Stockvalue GetStockValue(String SName, String Date)
+        {
+            return DAL.GetStockValue(SName, Date);
+            }
+        public void SetStockValue(String SName, String Date, Double Value, String OrgNr)
+        {
+            DAL.SetStockValue(SName, Date, Value, OrgNr);
+            }
+          public Stock GetStock(String SName)
+        {
+            return DAL.GetStock(SName);
+        }
+        public void SetStock (String SName, String SInfo, Double CurrentValue, String OrgNr)
+        {
+           DAL.SetStock(SName, SInfo, CurrentValue, OrgNr);
+           }
+        
+        public Stockportfolio GetStockPortfolio(String UserId, String SName)
+        { 
+            return DAL.GetStockPortfolio (UserId, SName);
+            }
+        public void SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
+        {
+            DAL.SetStockPortfolio(UserId, SName, Value, Amount);
+            }
+        
+        public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
+        { 
+            return DAL.GetAdminPassWordCheck(UserId, PassWord)
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
 
             return DAL.UpdateUsers(UserId, FName, LName, Adress, NINr);
-
-
         }
 
     }
