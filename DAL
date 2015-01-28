@@ -9,10 +9,11 @@ namespace StockExchange
     class DAL
     {
         StockExchangeEntities SEE = new StockExchangeEntities();
-        
-        public void SetAdmin(String AdminId, String PWord, String Name){
+
+        public void SetAdmin(String AdminId, String PWord, String Name)
+        {
             Administrator Admin = new Administrator();
-            
+
             Admin.adminId = AdminId;
             Admin.name = PWord;
             Admin.pWord = Name;
@@ -21,29 +22,30 @@ namespace StockExchange
             {
                 SEE.Administrator.Add(Admin);
                 SEE.SaveChanges();
-                
+
             }
-            catch (Exception )
+            catch (Exception)
             {
-              
-                
-                
-            }
+
+
 
             }
-         public Administrator GetAdmin(String AdminId){
-                try 
-	{	        
-		Administrator admin = SEE.Administrator.Find(AdminId);
+
+        }
+        public Administrator GetAdmin(String AdminId)
+        {
+            try
+            {
+                Administrator admin = SEE.Administrator.Find(AdminId);
                 return admin;
-	}
-	catch (Exception)
-	{
-		return null;
-	}
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
-             }
-       public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
+        }
+        public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
         {
 
             try
@@ -60,13 +62,14 @@ namespace StockExchange
                 return null;
             }
             return null;
-            
+
         }
-    
-        public void SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr){
-           
+
+        public void SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
+        {
+
             Stock Stock = new Stock();
-            
+
             Stock.sName = SName;
             Stock.sInfo = SInfo;
             Stock.currentValue = CurrentValue;
@@ -79,12 +82,13 @@ namespace StockExchange
             }
             catch (Exception)
             {
-                
-                
-            }
-            }
 
-        public Stock GetStock(String SName){
+
+            }
+        }
+
+        public Stock GetStock(String SName)
+        {
 
             try
             {
@@ -96,11 +100,11 @@ namespace StockExchange
             {
 
                 return null;
-                    
+
             }
 
         }
-  
+
         public void SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
         {
             Stockportfolio StockPort = new Stockportfolio();
@@ -117,8 +121,8 @@ namespace StockExchange
             }
             catch (Exception)
             {
-                
-                
+
+
             }
 
 
@@ -138,7 +142,7 @@ namespace StockExchange
                 return null;
             }
         }
-         public void SetStockValue(String SName, String Date, Double Value, String OrgNr)
+        public void SetStockValue(String SName, String Date, Double Value, String OrgNr)
         {
             Stockvalue StockVal = new Stockvalue();
 
@@ -154,28 +158,26 @@ namespace StockExchange
             }
             catch (Exception)
             {
-                
-                
+
+
             }
-
-
         }
 
         public Stockvalue GetStockValue(String SName, String Date)
+        {
+            try
             {
-                try
-                {
-                    Stockvalue Stockvalue = SEE.Stockvalue.Find(SName, Date);
+                Stockvalue Stockvalue = SEE.Stockvalue.Find(SName, Date);
 
-                    return Stockvalue;
-                }
-                catch (Exception)
-                {
-
-                    return null;
-                }
+                return Stockvalue;
             }
-         public void SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+        public void SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
         {
             Users User = new Users();
 
@@ -195,28 +197,29 @@ namespace StockExchange
             }
             catch (Exception)
             {
-                
-                
+
+
             }
-           
+
 
         }
-         public Users GetUser(String UserId){
-                try 
-	{	        
-		Users User = SEE.Users.Find(UserId);
+        public Users GetUser(String UserId)
+        {
+            try
+            {
+                Users User = SEE.Users.Find(UserId);
                 return User;
-	}
-	catch (Exception)
-	{
-		
-		return null;
-	}
-
-                
             }
-         
-             public Users GetUserPassWordCheck(String UserId, String PassWord)
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+
+        }
+
+        public Users GetUserPassWordCheck(String UserId, String PassWord)
         {
 
             try
@@ -234,35 +237,38 @@ namespace StockExchange
             }
             return null;
         }
-        
+
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
-             {
-                Users tmpUser = SEE.Users.Find(UserId);
+        {
+            Users tmpUser = SEE.Users.Find(UserId);
 
-                tmpUser.fName = FName;
-                tmpUser.lName = LName;
-                tmpUser.adress = Adress;
-                tmpUser.niNr = NINr;
-
-
+            tmpUser.fName = FName;
+            tmpUser.lName = LName;
+            tmpUser.adress = Adress;
+            tmpUser.niNr = NINr;
 
 
-                try
-                {
-                    SEE.SaveChanges();
-                    return tmpUser;
-                }
-                catch (Exception)
-                {
 
-                    return null;
-                }
-                
-             }
+
+            try
+            {
+                SEE.SaveChanges();
+                return tmpUser;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+        }
 
     }
 }
 
 
-        
+
+
+
+
     }
