@@ -1,0 +1,22 @@
+public Users GetUser(String UserId)
+        {
+            Users User = DAL.GetUser(UserId);
+
+            return User;
+
+        }
+        public void SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
+        {
+            DAL.SetUsers(UserId, PWord, FName, LName, Adress, NINr, Account);
+        }
+
+        public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
+        {
+
+            return DAL.UpdateUsers(UserId, FName, LName, Adress, NINr);
+
+
+        }
+
+    }
+}
