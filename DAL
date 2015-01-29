@@ -30,6 +30,64 @@ namespace StockExchange
 
         }
 
+
+        public String UpdateStockPortfolio(String UserId, String SName, int Amount)
+        {
+            
+            try
+            {
+                Stockportfolio StockPort = SEE.Stockportfolio.Find(UserId, SName);
+                StockPort.amount = Amount;
+
+           
+                SEE.SaveChanges();
+                return "added";
+            }
+            catch (Exception e)
+            {
+                Exception = e;
+                return "fail";
+
+            }
+
+
+        }
+
+        public String RemoveStockportfolio(String UserId, String SName)
+        {
+            try
+            {
+                Stockportfolio TmpStockportfolio = SEE.Stockportfolio.Find(UserId, SName);
+                SEE.Stockportfolio.Remove(TmpStockportfolio);
+                return "removed";
+            }
+            catch (Exception e)
+            {
+                Exception = e;
+                return null;
+
+            }
+        }
+
+
+
+        public String SellStock(String UserId, Double Earned)
+        {
+
+            try
+            {
+                Users TmpUser = SEE.Users.Find(UserId);
+                TmpUser.account += Earned;
+                SEE.SaveChanges();
+                return "added";
+            }
+            catch (Exception e)
+            {
+                Exception = e;
+                return null;
+            }
+        }
+
         public List<Stock> GetStocks()
         { 
             return SEE.Stock.ToList();
@@ -90,8 +148,7 @@ namespace StockExchange
             }
 
         }
-        
-   public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
+        public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
         {
 
             try
@@ -111,26 +168,7 @@ namespace StockExchange
             return null;
 
         }
-        
-          public Administrator UpdateAdmin(String AdminId, String Name)
-        {
-            try
-            {
-            Administrator tmpAdmin = SEE.Administrator.Find(AdminId);
-           
-            tmpAdmin.name = Name;
 
-
-                SEE.SaveChanges();
-                return tmpAdmin;
-            }
-            catch (Exception e)
-            {
-                Exception = e;
-                return null;
-            }
-
-        }
         public String SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
         {
 
@@ -338,5 +376,23 @@ namespace StockExchange
 
         }
 
+        public Administrator UpdateAdmin(String AdminId, String Name)
+        {
+            try
+            {
+                Administrator tmpAdmin = SEE.Administrator.Find(AdminId);
+
+                tmpAdmin.name = Name;
+
+
+                SEE.SaveChanges();
+                return tmpAdmin;
+            }
+            catch (Exception e)
+            {
+                Exception = e;
+                return null;
+            }
+        }
     }
 }
