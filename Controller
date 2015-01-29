@@ -76,6 +76,10 @@ namespace StockExchange
         {
             return DAL.GetAdminPassWordCheck(UserId, PassWord);
         }
+        
+        public Administrator UpdateAdmin(String AdminId, String Name){
+            return DAL.UpdateAdmin(AdminId, Name);
+        }
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
