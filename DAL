@@ -110,7 +110,26 @@ namespace StockExchange
             return null;
 
         }
+   public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
+        {
 
+            try
+            {
+                Administrator admin = SEE.Administrator.Find(UserId);
+                if (admin.pWord == PassWord)
+                {
+                    return admin;
+                }
+            }
+            catch (Exception e)
+            {
+
+                Exception = e;
+                return null;
+            }
+            return null;
+
+        }
         public String SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
         {
 
