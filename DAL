@@ -90,26 +90,7 @@ namespace StockExchange
             }
 
         }
-        public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
-        {
-
-            try
-            {
-                Administrator admin = SEE.Administrator.Find(UserId);
-                if (admin.pWord == PassWord)
-                {
-                    return admin;
-                }
-            }
-            catch (Exception e)
-            {
-
-                Exception = e;
-                return null;
-            }
-            return null;
-
-        }
+        
    public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
         {
 
