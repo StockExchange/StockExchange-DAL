@@ -14,11 +14,18 @@ namespace StockExchange
         {
             return DAL.ErrorMessage();
         }
+        public List<String[]> GetUserStocks(String USerId)
+        {
+            return LDL.GetUserStocks(USerId, DAL);
+        }
         public String LoginCheck(String UserId, String PassWord)
         {
             return LDL.LoginCheck(UserId, PassWord, DAL);
         }
-
+        public List<Stock> GetStocks()
+        {
+            return DAL.GetStocks();
+        }
 
         public Users GetUser(String UserId)
         {
