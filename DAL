@@ -111,6 +111,26 @@ namespace StockExchange
             return null;
 
         }
+        
+          public Administrator UpdateAdmin(String AdminId, String Name)
+        {
+            try
+            {
+            Administrator tmpAdmin = SEE.Administrator.Find(AdminId);
+           
+            tmpAdmin.name = Name;
+
+
+                SEE.SaveChanges();
+                return tmpAdmin;
+            }
+            catch (Exception e)
+            {
+                Exception = e;
+                return null;
+            }
+
+        }
         public String SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
         {
 
