@@ -12,9 +12,9 @@ namespace StockExchange
     {
         StockExchangeEntities SEE = new StockExchangeEntities();
         private Exception Exception;
-
-
-
+        
+            
+        
         public String ErrorMessage()
         {
             if (Exception.Message == "Object reference not set to an instance of an object.")
@@ -28,6 +28,27 @@ namespace StockExchange
 
             return Exception.Message;
 
+        }
+
+        public List<Stock> GetStocks()
+        { 
+            return SEE.Stock.ToList();
+        }
+
+        
+        public List<Stockportfolio> GetUserStocks(String UserId)
+        {
+            try
+            {
+                List<Stockportfolio> TmpList = SEE.Stockportfolio.Where(a => a.userId == UserId).ToList();
+                return TmpList;
+            }
+            catch (Exception e)
+            {
+
+                Exception = e;
+                return null;
+            }
         }
         public String SetAdmin(String AdminId, String PWord, String Name)
         {
