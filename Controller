@@ -34,7 +34,7 @@ namespace StockExchange
         public String LoginCheck(String UserId, String PassWord)
         {
             return LDL.LoginCheck(UserId, PassWord, DAL);
-            
+
         }
         public List<Stock> GetStocks()
         {
@@ -63,6 +63,11 @@ namespace StockExchange
         public Stockvalue GetStockValue(String SName, String Date)
         {
             return DAL.GetStockValue(SName, Date);
+        }
+
+        public List<Stockvalue> GetStockValues(String SName)
+        {
+            return DAL.GetStockValues(SName);
         }
         public String SetStockValue(String SName, String Date, Double Value, String OrgNr)
         {
