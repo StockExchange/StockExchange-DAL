@@ -10,13 +10,22 @@ namespace StockExchange
     {
         LogicalDataLayer LDL = new LogicalDataLayer();
         DAL DAL = new DAL();
+
+        public String UpDateStock(String SName, Double NewValue)
+        {
+            return LDL.UpdateStock(SName, NewValue, DAL);
+        }
         public String ErrorMessage()
         {
             return DAL.ErrorMessage();
         }
-        public String SellStock(String UserId, String StockId, int Amount)
+        public String BuyStock(String UserId, String SName, Double Value, int Amount)
         {
-            return LDL.SellStock(UserId, StockId, Amount, DAL);
+            return LDL.BuyStock(UserId, SName, Value, Amount, DAL);
+        }
+        public String SellStock(String UserId, String SName, int Amount)
+        {
+            return LDL.SellStock(UserId, SName, Amount, DAL);
         }
         public List<String[]> GetUserStocks(String USerId)
         {
@@ -25,6 +34,7 @@ namespace StockExchange
         public String LoginCheck(String UserId, String PassWord)
         {
             return LDL.LoginCheck(UserId, PassWord, DAL);
+            
         }
         public List<Stock> GetStocks()
         {
@@ -71,15 +81,15 @@ namespace StockExchange
         {
             return DAL.GetStockPortfolio(UserId, SName);
         }
-        public String SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
+        public String SetStockPortfolio(String UserId, String SName, String Date, Double Value, int Amount)
         {
-            return DAL.SetStockPortfolio(UserId, SName, Value, Amount);
+            return DAL.SetStockPortfolio(UserId, SName, Date, Value, Amount);
         }
 
-        public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
-        {
-            return DAL.GetAdminPassWordCheck(UserId, PassWord);
-        }
+        /*   public Administrator GetAdminPassWordCheck(String UserId, String PassWord)
+           {
+               return DAL.GetAdminPassWordCheck(UserId, PassWord);
+           }*/
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
