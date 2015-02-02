@@ -17,19 +17,19 @@ namespace StockExchange
         
         public String ErrorMessage()
         {
-            if (Exception.Message == "Object reference not set to an instance of an object.")
+        /*    if (Exception.Message == "Object reference not set to an instance of an object.")
             {
                 return "Incorrect password or username";
             }
             if (Exception.Message == "An error occurred while updating the entries. See the inner exception for details.")
             {
                 return "Already exists";
-            }
+            }*/
 
             return Exception.Message;
 
         }
-
+        
 
         public String UpdateStockPortfolio(String UserId, String SName, int Amount)
         {
@@ -46,11 +46,28 @@ namespace StockExchange
             catch (Exception e)
             {
                 Exception = e;
-                return "fail";
+                return null;
 
             }
 
 
+        }
+        public String UpdateStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
+        {
+            try
+            {
+                Stock Stock = SEE.Stock.Find(SName);
+                Stock.sInfo = SInfo;
+                Stock.currentValue = CurrentValue;
+                Stock.orgNr = OrgNr;
+                SEE.SaveChanges();
+                return "added";
+            }
+            catch (Exception e)
+            {
+                Exception = e;
+                return null;
+            }
         }
 
         public String RemoveStockportfolio(String UserId, String SName)
@@ -71,13 +88,13 @@ namespace StockExchange
 
 
 
-        public String SellStock(String UserId, Double Earned)
+        public String AccountSaldoUpdade(String UserId, Double AccountChange)
         {
 
             try
             {
                 Users TmpUser = SEE.Users.Find(UserId);
-                TmpUser.account += Earned;
+                TmpUser.account += AccountChange;
                 SEE.SaveChanges();
                 return "added";
             }
@@ -110,14 +127,15 @@ namespace StockExchange
         }
         public String SetAdmin(String AdminId, String PWord, String Name)
         {
-            Administrator Admin = new Administrator();
-
-            Admin.adminId = AdminId;
-            Admin.name = PWord;
-            Admin.pWord = Name;
+            
 
             try
             {
+                Administrator Admin = new Administrator();
+
+                Admin.adminId = AdminId;
+                Admin.name = PWord;
+                Admin.pWord = Name;
                 SEE.Administrator.Add(Admin);
                 SEE.SaveChanges();
                 return "added";
@@ -126,7 +144,7 @@ namespace StockExchange
             catch (Exception e)
             {
                 Exception = e;
-                return "fail";
+                return null;
             }
 
 
@@ -162,7 +180,7 @@ namespace StockExchange
             catch (Exception e)
             {
 
-                Exception = e;
+               Exception = e;
                 return null;
             }
             return null;
@@ -172,15 +190,16 @@ namespace StockExchange
         public String SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
         {
 
-            Stock Stock = new Stock();
-
-            Stock.sName = SName;
-            Stock.sInfo = SInfo;
-            Stock.currentValue = CurrentValue;
-            Stock.orgNr = OrgNr;
+            
 
             try
             {
+                Stock Stock = new Stock();
+
+                Stock.sName = SName;
+                Stock.sInfo = SInfo;
+                Stock.currentValue = CurrentValue;
+                Stock.orgNr = OrgNr;
                 SEE.Stock.Add(Stock);
                 SEE.SaveChanges();
                 return "added";
@@ -188,7 +207,7 @@ namespace StockExchange
             catch (Exception e)
             {
                 Exception = e;
-                return "fail";
+                return null;
 
             }
         }
@@ -212,17 +231,19 @@ namespace StockExchange
 
         }
 
-        public String SetStockPortfolio(String UserId, String SName, Double Value, int Amount)
+        public String SetStockPortfolio(String UserId, String SName, String Date, Double Value, int Amount)
         {
-            Stockportfolio StockPort = new Stockportfolio();
-
-            StockPort.userId = UserId;
-            StockPort.sName = SName;
-            StockPort.value = Value;
-            StockPort.amount = Amount;
+            
 
             try
             {
+                Stockportfolio StockPort = new Stockportfolio();
+
+                StockPort.userId = UserId;
+                StockPort.sName = SName;
+                StockPort.date = Date;
+                StockPort.value = Value;
+                StockPort.amount = Amount;
                 SEE.Stockportfolio.Add(StockPort);
                 SEE.SaveChanges();
                 return "added";
@@ -230,7 +251,7 @@ namespace StockExchange
             catch (Exception e)
             {
                 Exception = e;
-                return "fail";
+                return null;
 
             }
 
@@ -253,15 +274,18 @@ namespace StockExchange
         }
         public String SetStockValue(String SName, String Date, Double Value, String OrgNr)
         {
-            Stockvalue StockVal = new Stockvalue();
-
-            StockVal.sName = SName;
-            StockVal.date = Date;
-            StockVal.value = Value;
-            StockVal.orgNr = OrgNr;
+           
+            
 
             try
             {
+                Stockvalue StockVal = new Stockvalue();
+
+                StockVal.sName = SName;
+                StockVal.date = Date;
+                StockVal.value = Value;
+                StockVal.orgNr = OrgNr;
+
                 SEE.Stockvalue.Add(StockVal);
                 SEE.SaveChanges();
                 return "added";
@@ -269,7 +293,7 @@ namespace StockExchange
             catch (Exception e)
             {
                 Exception = e;
-                return "fail";
+                return null;
 
             }
         }
@@ -290,19 +314,20 @@ namespace StockExchange
         }
         public String SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
         {
-            Users User = new Users();
-
-            User.userId = UserId;
-            User.pWord = PWord;
-            User.fName = FName;
-            User.lName = LName;
-            User.address = Adress;
-            User.niNr = NINr;
-            User.account = Account;
+            
 
 
             try
             {
+                Users User = new Users();
+
+                User.userId = UserId;
+                User.pWord = PWord;
+                User.fName = FName;
+                User.lName = LName;
+                User.address = Adress;
+                User.niNr = NINr;
+                User.account = Account;
                 SEE.Users.Add(User);
                 SEE.SaveChanges();
                 return "added";
@@ -310,7 +335,7 @@ namespace StockExchange
             catch (Exception e)
             {
                 Exception = e;
-                return "fail";
+                return null;
 
             }
 
@@ -353,18 +378,16 @@ namespace StockExchange
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
-            Users tmpUser = SEE.Users.Find(UserId);
-
-            tmpUser.fName = FName;
-            tmpUser.lName = LName;
-            tmpUser.address = Adress;
-            tmpUser.niNr = NINr;
-
-
-
+            
 
             try
             {
+                Users tmpUser = SEE.Users.Find(UserId);
+
+                tmpUser.fName = FName;
+                tmpUser.lName = LName;
+                tmpUser.address = Adress;
+                tmpUser.niNr = NINr;
                 SEE.SaveChanges();
                 return tmpUser;
             }
