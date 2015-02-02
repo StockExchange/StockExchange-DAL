@@ -12,34 +12,34 @@ namespace StockExchange
     {
         StockExchangeEntities SEE = new StockExchangeEntities();
         private Exception Exception;
-        
-            
-        
+
+
+
         public String ErrorMessage()
         {
-        /*    if (Exception.Message == "Object reference not set to an instance of an object.")
-            {
-                return "Incorrect password or username";
-            }
-            if (Exception.Message == "An error occurred while updating the entries. See the inner exception for details.")
-            {
-                return "Already exists";
-            }*/
+            /*    if (Exception.Message == "Object reference not set to an instance of an object.")
+                {
+                    return "Incorrect password or username";
+                }
+                if (Exception.Message == "An error occurred while updating the entries. See the inner exception for details.")
+                {
+                    return "Already exists";
+                }*/
 
             return Exception.Message;
 
         }
-        
+
 
         public String UpdateStockPortfolio(String UserId, String SName, int Amount)
         {
-            
+
             try
             {
                 Stockportfolio StockPort = SEE.Stockportfolio.Find(UserId, SName);
                 StockPort.amount = Amount;
 
-           
+
                 SEE.SaveChanges();
                 return "added";
             }
@@ -106,11 +106,11 @@ namespace StockExchange
         }
 
         public List<Stock> GetStocks()
-        { 
+        {
             return SEE.Stock.ToList();
         }
 
-        
+
         public List<Stockportfolio> GetUserStocks(String UserId)
         {
             try
@@ -127,7 +127,7 @@ namespace StockExchange
         }
         public String SetAdmin(String AdminId, String PWord, String Name)
         {
-            
+
 
             try
             {
@@ -180,7 +180,7 @@ namespace StockExchange
             catch (Exception e)
             {
 
-               Exception = e;
+                Exception = e;
                 return null;
             }
             return null;
@@ -190,7 +190,7 @@ namespace StockExchange
         public String SetStock(String SName, String SInfo, Double CurrentValue, String OrgNr)
         {
 
-            
+
 
             try
             {
@@ -233,7 +233,7 @@ namespace StockExchange
 
         public String SetStockPortfolio(String UserId, String SName, String Date, Double Value, int Amount)
         {
-            
+
 
             try
             {
@@ -274,8 +274,8 @@ namespace StockExchange
         }
         public String SetStockValue(String SName, String Date, Double Value, String OrgNr)
         {
-           
-            
+
+
 
             try
             {
@@ -312,9 +312,24 @@ namespace StockExchange
                 return null;
             }
         }
+
+        public List<Stockvalue> GetStockValues(String SName)
+        {   
+            try
+            {
+                List<Stockvalue> TmpList = SEE.Stockvalue.Where(a => a.sName == SName).ToList();
+                return TmpList;
+            }
+           
+            catch (Exception e)
+            {
+                Exception = e;
+                return null;
+            }
+        }
         public String SetUsers(String UserId, String PWord, String FName, String LName, String Adress, String NINr, Double Account)
         {
-            
+
 
 
             try
@@ -325,7 +340,7 @@ namespace StockExchange
                 User.pWord = PWord;
                 User.fName = FName;
                 User.lName = LName;
-                User.address = Adress;
+                User.adress = Adress;
                 User.niNr = NINr;
                 User.account = Account;
                 SEE.Users.Add(User);
@@ -378,7 +393,7 @@ namespace StockExchange
 
         public Users UpdateUsers(String UserId, String FName, String LName, String Adress, String NINr)
         {
-            
+
 
             try
             {
@@ -386,7 +401,7 @@ namespace StockExchange
 
                 tmpUser.fName = FName;
                 tmpUser.lName = LName;
-                tmpUser.address = Adress;
+                tmpUser.adress = Adress;
                 tmpUser.niNr = NINr;
                 SEE.SaveChanges();
                 return tmpUser;
